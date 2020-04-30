@@ -1,0 +1,33 @@
+torch/data/*
+torch/runs/*
+torch/checkpoints/*
+*/runs/*
+*/data/*
+*/checkpoints/*
+.directory
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+bin/
+build/
+lib/
+lib64/
+var/
+
+# Logging:
+*.log
+*.out
+
+models/
+weights/
+rl_models/
+rf_models/
+runs/
+ga_runs/
+process_control_model/params/
+
+preprocessing/.ipynb_checkpoints/
+preprocessing/checkpoints/

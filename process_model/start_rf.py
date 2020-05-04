@@ -40,7 +40,7 @@ def _start_rf():
 
 
 if __name__ == '__main__':
-    IS_TRAINING = False
+    IS_TRAINING = True
     DATA_PATH = Path(dirs.DATA)
     SENSOR_DIM = 800
     PARAMS_DIM = 5

@@ -1,7 +1,7 @@
 from joblib import load
 import torch
 
-from process_control_model.rl_utils import load_pretrained_ff_model
+from process_control_model.ne_utils import load_pretrained_ff_model
 
 
 def init_world_model(identifier, path, device):

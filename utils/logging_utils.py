@@ -23,12 +23,12 @@ def set_logging_parameters(filename, path=None):
 
 
 def set_rl_logging_parameters(filename):
-    set_logging_parameters(filename, dirs.RL_LOGS)
+    set_logging_parameters(filename, dirs.NE_LOGS)
 
 
 def set_multi_file_logging_parameters(logger_name, filename):
     log_setup = logging.getLogger(logger_name)
-    file_handler = logging.FileHandler(_get_logger_path(filename, dirs.RL_LOGS), mode='a')
+    file_handler = logging.FileHandler(_get_logger_path(filename, dirs.NE_LOGS), mode='a')
     stream_handler = logging.StreamHandler()
     log_setup.setLevel(logging.INFO)
     log_setup.addHandler(file_handler)
@@ -65,7 +65,7 @@ def get_best_results(results):
     return best_mean, results[0]
 
 
-def _compare_best_models(shared_ids, unique_ids, path=dirs.RL_LOGS):
+def _compare_best_models(shared_ids, unique_ids, path=dirs.NE_LOGS):
     print('find results with', shared_ids)
     for identifier in unique_ids:
         results = get_results_from_logs(shared_ids + identifier, path)

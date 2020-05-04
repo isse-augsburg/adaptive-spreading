@@ -10,7 +10,7 @@ from preprocessing.split_datasets import get_test_set_respecting_files
 from utils.logging_utils import get_best_results, get_results_from_logs
 import utils.paths as dirs
 from process_control_model.model_adapter import NNAdapter, RFAdapter
-from process_control_model.rl_utils import transform_actions_prob
+from process_control_model.ne_utils import transform_actions_prob
 
 
 def _get_best_models():

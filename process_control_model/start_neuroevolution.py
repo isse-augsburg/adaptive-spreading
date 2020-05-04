@@ -13,12 +13,12 @@ from utils.tape_width_evaluation import evaluate_tape_width
 import utils.logging_utils as logging_config
 from utils.nn_utils import count_trainable_parameters
 from process_control_model.model_adapter import init_world_model
-from process_control_model.rl_utils import MAX_ACTION, create_target, clear_setup, \
+from process_control_model.ne_utils import MAX_ACTION, create_target, clear_setup, \
     transform_actions_prob, get_reward
-from process_control_model.rl_parameters import RewardFactors, TapeTargets
-import process_control_model.rl_parameters as rp
+from process_control_model.ne_parameters import RewardFactors, TapeTargets
+import process_control_model.ne_parameters as rp
 from utils.paths import NN_BACKEND, RF_BACKEND
-from plotter.rl_plotter import render
+from plotter.ne_plotter import render
 import utils.paths as dirs
 
 
@@ -63,13 +63,13 @@ def reduce_mutation_rate(factor=0.6, min_rate=0.01):
 
 
 def save_genotype(genotype):
-    if not dirs.RL_WEIGHTS.exists():
-        dirs.RL_WEIGHTS.mkdir()
+    if not dirs.NE_WEIGHTS.exists():
+        dirs.NE_WEIGHTS.mkdir()
     torch.save(genotype.state_dict(),
-               dirs.RL_WEIGHTS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth'))
-    if not dirs.RL_MODELS.exists():
-        dirs.RL_MODELS.mkdir()
-    torch.save(genotype, dirs.RL_MODELS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth'))
+               dirs.NE_WEIGHTS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth'))
+    if not dirs.NE_MODELS.exists():
+        dirs.NE_MODELS.mkdir()
+    torch.save(genotype, dirs.NE_MODELS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth'))
 
 
 def set_up_first_generation():
@@ -161,12 +161,12 @@ def mutate(parent_net):
 
 
 def test_trained_model():
-    if (dirs.RL_WEIGHTS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth')).exists():
-        net = torch.load(dirs.RL_MODELS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth'))
+    if (dirs.NE_WEIGHTS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth')).exists():
+        net = torch.load(dirs.NE_MODELS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth'))
     else:
         net = Net(RL_PARAM_DICT[rp.sensor_dim] + RL_PARAM_DICT[rp.setup_dim], RL_PARAM_DICT[rp.setup_dim],
                   RL_PARAM_DICT[rp.hidden_dims])
-        net.load_state_dict(torch.load(dirs.RL_WEIGHTS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth')))
+        net.load_state_dict(torch.load(dirs.NE_WEIGHTS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth')))
     net.to(device)
     test_fitness = determine_fitness(net, test_x, -1, True, True).item()
     print(f'reward on test set: {test_fitness}')
@@ -201,7 +201,7 @@ def set_parameters():
     rl_param_dict[rp.ga_noise] = 0.2
     rl_param_dict[rp.rl_model_path] = rp.create_ga_model_path(
         'ga_wo_env_first_step_noise_reduction_new_eval_simpleprep3_small_backend', rl_param_dict)
-    rl_param_dict[rp.logging_path] = dirs.RL_LOGS
+    rl_param_dict[rp.logging_path] = dirs.NE_LOGS
     print(rl_param_dict[rp.rl_model_path])
     rp.save_parameters(rl_param_dict, rl_param_dict[rp.rl_model_path])
     return rl_param_dict, reward_factors, tape_targets
@@ -248,7 +248,7 @@ if __name__ == '__main__':
                 f' + movement * {RL_PARAM_DICT[rp.k_m]}')
     logger.info(f'Create {RL_PARAM_DICT[rp.rl_model_path]} on {device}')
     if TRAINING:
-        writer = SummaryWriter(Path(dirs.RL_TENSORBOARD, RL_PARAM_DICT[rp.rl_model_path]))
+        writer = SummaryWriter(Path(dirs.NE_TENSORBOARD, RL_PARAM_DICT[rp.rl_model_path]))
         start_evolution()
     else:
         test_trained_model()

@@ -41,7 +41,7 @@ def _start_ff():
 
 
 if __name__ == '__main__':
-    IS_TRAINING = False
+    IS_TRAINING = True
     PROFILE_ONLY_INPUT = False
     if len(sys.argv) > 1:
         HIDDEN_DIMS = [int(i) for i in sys.argv[1].strip('[]').split(',')]

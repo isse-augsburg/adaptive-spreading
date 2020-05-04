@@ -17,12 +17,12 @@ world_model_path = 'world_model_path'
 hidden_dims = 'hidden_dims'
 learning_rate = 'learning_rate'
 batch_size = 'batch_size'
-rl_model_path = 'rl_model_path'
+rl_model_path = 'ne_model_path'
 logging_path = 'logging_path'
 critic_architecture = 'critic_architecture'
 actor_architecture = 'actor_architecture'
 population_size = 'population_size'
-ga_noise = 'ga_noise'
+ga_noise = 'ne_noise'
 reproducing_parents = 'reproducing_parents'
 
 
@@ -52,7 +52,7 @@ RewardFactors = namedtuple('RewardFactors', ['height_factor', 'width_factor', 'm
 TapeTargets = namedtuple('TapeTargets', ['target_width', 'target_height'])
 
 
-PARAMETERS_DIR = Path(dirs.RL_PARAMS)
+PARAMETERS_DIR = Path(dirs.NE_PARAMS)
 
 
 def save_parameters(param_dict, filename):

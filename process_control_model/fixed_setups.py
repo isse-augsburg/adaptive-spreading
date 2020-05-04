@@ -10,10 +10,10 @@ from utils.tape_width_evaluation import evaluate_tape_width
 from utils import logging_utils
 from utils.logging_utils import set_multi_file_logging_parameters
 from process_control_model.model_adapter import init_world_model
-from process_control_model.rl_utils import MAX_ACTION, ACTION_RANGES, create_target
+from process_control_model.ne_utils import MAX_ACTION, ACTION_RANGES, create_target
 from utils.paths import NN_BACKEND, RF_BACKEND
-from process_control_model.rl_parameters import TapeTargets
-import process_control_model.rl_parameters as rn
+from process_control_model.ne_parameters import TapeTargets
+import process_control_model.ne_parameters as rn
 import utils.paths as dirs
 
 
@@ -72,7 +72,7 @@ if __name__ == '__main__':
                                           f'{RL_PARAM_DICT[rn.target_width]}_' \
                                           f'target_h={RL_PARAM_DICT[rn.target_height]}' \
                                           f'_new_eval_simpleprep3'
-        RL_PARAM_DICT[rn.logging_path] = dirs.RL_LOGS
+        RL_PARAM_DICT[rn.logging_path] = dirs.NE_LOGS
         set_multi_file_logging_parameters(setup, RL_PARAM_DICT[rn.rl_model_path])
         LOGGER = logging.getLogger(setup)
         print(RL_PARAM_DICT[rn.rl_model_path])

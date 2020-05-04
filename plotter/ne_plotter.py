@@ -2,7 +2,7 @@ from _tkinter import TclError
 import matplotlib.pyplot as plt
 
 from preprocessing.tape_detection import get_tape_edges
-from process_control_model.rl_utils import create_target
+from process_control_model.ne_utils import create_target
 
 
 def render(tape_in, tape_out, bar_positions, target_width, target_height, sensor_dim=800, setup_dim=5):

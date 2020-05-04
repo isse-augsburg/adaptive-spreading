@@ -23,10 +23,10 @@ var/
 
 models/
 weights/
-rl_models/
+ne_models/
 rf_models/
 runs/
-ga_runs/
+ne_runs/
 process_control_model/params/
 
 preprocessing/.ipynb_checkpoints/

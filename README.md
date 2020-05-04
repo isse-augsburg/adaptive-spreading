@@ -31,3 +31,9 @@ The data is used for both, the Process Model and the Process Control Model.
 * The baseline can be run as follows
 `python -m process_control_model.fixed_setup`.
 Log files can be found in the same directory as the neuroevolution logs.
+
+## General Remarks
+
+* See `requirements.txt` for libraries required to run the code.
+* Additional folders are created in the project directory
+(according to the paths specified in `utils/paths.py`) when necessary.

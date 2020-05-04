@@ -4,36 +4,30 @@ Code for the paper "Learning Controllers for Adaptive Spreading ofCarbon Fiber T
 Download data (preprocessed) and a pretrained process model here:
 https://figshare.com/s/1a3e9b1ac16362b46cf9
 
-## Preprocessing
+## Run experiments
 
-Scripts to preprocess the data are located in the subdirectory ./preprocessing.  
-The major preprocessing steps are:
-+ Removing NANs
-+ Applying Savitzky-Golay-Filter
-+ Building the average of consecutive measurements
-+ Shifting the tow to the middle of each measurement
+* Download data and adjust the data path if necessary (and other in-/output paths) in the utils/paths.py file.  
+Data is used for the Process Model and the Process Control Model.
 
-## Tow Prediction / Process Model
+### Process Model
 
-### Feedforward Neural Networks
+* To train a feedforward neural network or the random forest, run 
+`python -m process_model.start_ff` or `python -m process_model.start_rf`
 
-### Random Forests
+* Results can be found in the generated log file (per default in the `logs` directory)
 
-## Process Control Model
+* When training a neural network, in addition, a tensorboard file is generated (in the `runs` directory). 
 
-### Reward/Fitness Function
+### Process Control Model
 
-The reward function consists of three parts:
-+ Target height
-+ Target width
-+ Bar movement
+* To start the neuroevolution, run `python -m process_control_model.start_neuroevolution`
 
-`cost = -(k_h * abs(target_height - mean_current_height) + k_w * abs(target_width - current_width) + k_m * total_bar_movement)`
+    * Parameters can be set in the source code or passed as json-file
+(see `process_control_model/params/example_ne_param_file.json` for details)
+    * Please adjust the type of the process_model used as backend (i.e. "nn" or "rf") and
+    specify the path to the pre-trained model.
+    * Results are logged to a file in the directory `process_control_model/logs`
 
-The three criteria can be scaled individually.
-
-### Algorithms
-
-
-+ Genetic Algorithm (start_neuroevolution.py)
-    + Implements a rather simplistic GA with mutation. No crossover capabilities are provided.
+* The baseline in form of the fixed bar setups can be run as follows
+`python -m process_control_model.fixed_setup`.
+Log files can be found in the same directory as the neuroevolution logs.

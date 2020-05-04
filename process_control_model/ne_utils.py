@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from torch.utils.data import Dataset
-from process_model.feedforward import Feedforward
+from tape_prediction.feedforward import Feedforward
 from preprocessing.tape_detection import get_tape_edges
 from preprocessing.preprocessing_helper import MAX_ACTION, ACTION_RANGES
 

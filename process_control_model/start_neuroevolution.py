@@ -168,7 +168,7 @@ def test_trained_model():
                   RL_PARAM_DICT[rp.hidden_dims])
         net.load_state_dict(torch.load(dirs.NE_WEIGHTS / (RL_PARAM_DICT[rp.rl_model_path] + '.pth')))
     net.to(device)
-    test_fitness = determine_fitness(net, test_x, -1, True, True).item()
+    test_fitness = determine_fitness(net, test_x, -1, True, False).item()
     print(f'reward on test set: {test_fitness}')
     logger.info(f'reward on test set: {test_fitness}')
 
@@ -181,7 +181,7 @@ def set_parameters():
     rl_param_dict[rp.sensor_dim] = 800
     rl_param_dict[rp.setup_dim] = 5
     # define target
-    tape_targets = TapeTargets(240, 0.15)
+    tape_targets = TapeTargets(310, 0.15)
     rl_param_dict[rp.target_width] = tape_targets.target_width
     rl_param_dict[rp.target_height] = tape_targets.target_height
     # specify reward function

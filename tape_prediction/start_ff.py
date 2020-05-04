@@ -4,14 +4,14 @@ from pathlib import Path
 import torch
 import numpy as np
 from preprocessing.split_datasets import split_data_respecting_files
-from process_model.ff_trainer import FFTrainer
+from tape_prediction.ff_trainer import FFTrainer
 from preprocessing.datasetloader import load_data_and_meta, load_test_data_and_meta
 from plotter.profile_plotter import plot_samples
 from utils.nn_utils import count_trainable_parameters
 from utils.logging_utils import set_logging_parameters
 import utils.paths as dirs
 
-# execute in adaptive-spreading directory: python3 -m process_model.start_ff
+# execute in adaptive-spreading directory: python3 -m tape_prediction.start_ff
 
 
 def _start_ff():

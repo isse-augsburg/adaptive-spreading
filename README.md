@@ -12,7 +12,7 @@ The data is used for both, the Process Model and the Process Control Model.
 ### Process Model
 
 * To train a feedforward neural network or a random forest, run 
-`python -m process_model.start_ff` or `python -m process_model.start_rf`
+`python -m tape_prediction.start_ff` or `python -m tape_prediction.start_rf`
 
 * Results can be found in the generated log file (per default in the `logs` directory)
 

@@ -1,8 +1,8 @@
 from pathlib import Path
 import torch
 from torch.optim import lr_scheduler
-from process_model.feedforward import Feedforward
-from process_model.trainer import Trainer
+from tape_prediction.feedforward import Feedforward
+from tape_prediction.trainer import Trainer
 
 
 class FFTrainer(Trainer):

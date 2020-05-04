@@ -2,7 +2,7 @@ import logging
 from pathlib import Path
 from preprocessing.split_datasets import split_data_respecting_files_including_meta, \
     get_test_set_including_meta
-from process_model.random_forest_regression import train_rf, validate_rf, save_model, load_model
+from tape_prediction.random_forest_regression import train_rf, validate_rf, save_model, load_model
 from plotter.profile_plotter import plot_samples_np_wrapper
 from utils.logging_utils import set_logging_parameters
 import utils.paths as dirs

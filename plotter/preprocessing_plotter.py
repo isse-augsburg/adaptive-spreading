@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 from preprocessing.simple_preprocessing import subproc
-from process_model.model_comparison import plot_samples
+from tape_prediction.model_comparison import plot_samples
 
 if __name__ == '__main__':
     filename = Path('/media/julia/Data/datasets/lufpro/real/Razieh11.09_1Tow_Setup10_8,0m_min_3.csv')
